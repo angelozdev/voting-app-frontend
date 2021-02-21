@@ -1,9 +1,9 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react'
 
 const global = css`
   body {
     background-color: brown;
   }
-`;
+`
 
-export default global;
+export default global

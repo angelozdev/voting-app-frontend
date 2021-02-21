@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from 'react'
 
 /* Styles */
-import { Global } from "@emotion/react";
-import global from "styles/global";
+import { Global } from '@emotion/react'
+import global from 'styles/global'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
       <Global styles={global} />
       <Component {...pageProps} />
     </React.Fragment>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
