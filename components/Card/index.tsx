@@ -16,12 +16,17 @@ import {
 import { colors } from 'styles/theme'
 
 /* Types */
-import { Candidate, GetAllCandidates, UpdateCandidateById } from 'types'
+import {
+  Candidate,
+  GetAllCandidates,
+  GetTotalVotes,
+  UpdateCandidateById
+} from 'types'
 
 /* Graphql */
 import { UPDATE_CANDIDATE_BY_ID } from 'graphql/mutations'
 import { MutationUpdaterFn, useMutation } from '@apollo/client'
-import { GET_ALL_CANDIDATES } from 'graphql/queries'
+import { GET_ALL_CANDIDATES, GET_TOTAL_VOTES } from 'graphql/queries'
 
 /******************* MAIN COMPONENT  ********************/
 function Card({ firstname, lastname, slogan, avatar, votes, id }: Candidate) {
@@ -38,6 +43,10 @@ function Card({ firstname, lastname, slogan, avatar, votes, id }: Candidate) {
       query: GET_ALL_CANDIDATES
     })
 
+    const { getTotalVotes } = cache.readQuery<GetTotalVotes>({
+      query: GET_TOTAL_VOTES
+    })
+
     cache.writeQuery<GetAllCandidates>({
       query: GET_ALL_CANDIDATES,
       data: {
@@ -45,6 +54,19 @@ function Card({ firstname, lastname, slogan, avatar, votes, id }: Candidate) {
           ...getAllCandidates.filter((user) => user.id !== candidate.id),
           candidate
         ]
+      }
+    })
+
+    cache.writeQuery<GetTotalVotes>({
+      query: GET_TOTAL_VOTES,
+      data: {
+        getTotalVotes: {
+          ...getTotalVotes,
+          totalVotes:
+            votes < candidate.votes
+              ? getTotalVotes.totalVotes + 1
+              : getTotalVotes.totalVotes - 1
+        }
       }
     })
   }
