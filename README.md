@@ -1,6 +1,6 @@
 # Voting App
 
-_With Voting-App you can vote for the candidate you prefer. _
+_With Voting-App you can vote for the candidate you prefer._
 
 ## Starting
 
