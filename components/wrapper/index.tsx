@@ -6,8 +6,8 @@ import { Container } from './styles'
 
 /* Types */
 interface Props {
-  children: React.ReactChild
-  maxWidth: screens
+  children: React.ReactNode
+  maxWidth?: screens
   hasPadding?: boolean
 }
 
