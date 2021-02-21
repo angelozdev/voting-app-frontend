@@ -1,5 +1,14 @@
-import Head from "next/head";
+import * as React from 'react'
 
-export default function Home(): JSX.Element {
-  return <div></div>;
+/* Components */
+import { Header } from 'components'
+
+function Home(): JSX.Element {
+  return (
+    <React.Fragment>
+      <Header />
+    </React.Fragment>
+  )
 }
+
+export default Home
