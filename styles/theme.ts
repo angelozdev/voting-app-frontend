@@ -1,18 +1,9 @@
 export enum screens {
   'sm' = '640px',
-  // => @media (min-width: 640px) { ... }
-
   'md' = '768px',
-  // => @media (min-width: 768px) { ... }
-
   'lg' = '1024px',
-  // => @media (min-width: 1024px) { ... }
-
   'xl' = '1280px',
-  // => @media (min-width: 1280px) { ... }
-
   '2xl' = '1536px'
-  // => @media (min-width: 1536px) { ... }
 }
 
 export enum fonts {
@@ -21,7 +12,9 @@ export enum fonts {
 
 export enum colors {
   primary = 'brown',
-  white = '#fefefe'
+  white = '#fefefe',
+  gray = 'rgb(107,114,128)',
+  black = 'rgb(31,41,55)'
 }
 
 export enum shadows {

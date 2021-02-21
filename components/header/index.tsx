@@ -12,7 +12,7 @@ import {
   NumberVotes,
   DisplayVotes
 } from './styles'
-import { Archive } from 'components/icons'
+import { Archive } from 'components/Icons'
 
 /* Graphql */
 import { useQuery } from '@apollo/client'
@@ -20,7 +20,7 @@ import { GET_TOTAL_VOTES } from 'graphql/queries'
 
 /* Types */
 import { GetTotalVotes } from 'types'
-import Spinner from 'components/spinner'
+import Spinner from 'components/Spinner'
 import { colors } from 'styles/theme'
 
 function Header() {

@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { shadows } from 'styles/theme'
 
 export const Container = styled.header`
-  box-shadow: ${shadows.lg};
+  box-shadow: ${shadows.md};
 `
 
 export const Content = styled.div`
