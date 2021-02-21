@@ -11,7 +11,8 @@ import {
   Fullname,
   Slogan,
   Vote,
-  DisplayVotes
+  DisplayVotes,
+  Pane
 } from './styles'
 import { colors } from 'styles/theme'
 
@@ -38,7 +39,7 @@ function Card({ firstname, lastname, slogan, avatar, votes, id }: Candidate) {
   const updateCache: MutationUpdaterFn<UpdateCandidateById> = (
     cache,
     { data: { updateCandidateById: candidate } }
-  ) => {
+  ): void => {
     const { getAllCandidates } = cache.readQuery<GetAllCandidates>({
       query: GET_ALL_CANDIDATES
     })
@@ -71,7 +72,7 @@ function Card({ firstname, lastname, slogan, avatar, votes, id }: Candidate) {
     })
   }
 
-  const onHandleVoteUp = () => {
+  const onHandleVoteUp = (): void => {
     if (votes < 20) {
       updateCandidateById({
         variables: {
@@ -85,7 +86,7 @@ function Card({ firstname, lastname, slogan, avatar, votes, id }: Candidate) {
     }
   }
 
-  const onHandleVoteDown = () => {
+  const onHandleVoteDown = (): void => {
     if (votes > 1) {
       updateCandidateById({
         variables: {
@@ -101,33 +102,29 @@ function Card({ firstname, lastname, slogan, avatar, votes, id }: Candidate) {
 
   return (
     <Container>
-      <Avatar width="150" height="150" src={avatar} />
+      <Pane>
+        <Avatar width="150" height="150" src={avatar} />
 
-      <Fullname>
-        {firstname} {lastname}
-      </Fullname>
+        <Fullname>
+          {firstname} {lastname}
+        </Fullname>
 
-      <Slogan>{slogan}</Slogan>
+        <Slogan>{slogan}</Slogan>
+      </Pane>
 
-      <Actions>
-        <Vote disabled={loading} onClick={onHandleVoteUp}>
-          {loading ? (
-            '...'
-          ) : (
+      <Pane>
+        <Actions>
+          <Vote disabled={loading || votes === 20} onClick={onHandleVoteUp}>
             <ChevronUp color="green" width="1rem" height="1rem" />
-          )}
-        </Vote>
+          </Vote>
 
-        <DisplayVotes>{votes}</DisplayVotes>
+          <DisplayVotes>{votes}</DisplayVotes>
 
-        <Vote onClick={onHandleVoteDown} disabled={loading}>
-          {loading ? (
-            '...'
-          ) : (
+          <Vote onClick={onHandleVoteDown} disabled={loading || votes === 1}>
             <ChevronDown color={colors.primary} width="1rem" height="1rem" />
-          )}
-        </Vote>
-      </Actions>
+          </Vote>
+        </Actions>
+      </Pane>
     </Container>
   )
 }

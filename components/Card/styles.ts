@@ -7,6 +7,9 @@ export const Container = styled.div`
   text-align: center;
   box-shadow: ${shadows.DEFAULT};
   transition: 300ms all ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
     box-shadow: ${shadows.lg};
@@ -38,8 +41,14 @@ export const Vote = styled.button`
   cursor: pointer;
   border: none;
   padding: 0.5rem 1rem;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `
 
 export const DisplayVotes = styled.span`
   margin: 0 1rem;
 `
+export const Pane = styled.div``
