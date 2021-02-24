@@ -1,3 +1,5 @@
+import { loading } from './keyframes'
+
 export enum screens {
   'sm' = '640px',
   'md' = '768px',
@@ -14,6 +16,7 @@ export enum colors {
   primary = 'brown',
   white = '#fefefe',
   gray = 'rgb(107,114,128)',
+  lightgray = '#dedede',
   black = 'rgb(31,41,55)'
 }
 
@@ -27,4 +30,8 @@ export enum shadows {
   '3xl' = '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
   inner = 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
   none = 'none'
+}
+
+export enum animations {
+  DEFAULT = `1s ease-in infinite;`
 }

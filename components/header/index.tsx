@@ -20,17 +20,17 @@ import { GET_TOTAL_VOTES } from 'graphql/queries'
 
 /* Types */
 import { GetTotalVotes } from 'types'
-import Spinner from 'components/Spinner'
 import { colors } from 'styles/theme'
 
 function Header() {
   const { data } = useQuery<GetTotalVotes>(GET_TOTAL_VOTES)
+  const [votes, setVotes] = React.useState('0')
 
-  if (!data) return <Spinner />
-
-  const {
-    getTotalVotes: { totalVotes }
-  } = data
+  React.useEffect(() => {
+    if (data) {
+      setVotes(data?.getTotalVotes.totalVotes.toString())
+    }
+  }, [data?.getTotalVotes.totalVotes])
 
   return (
     <Container>
@@ -47,7 +47,7 @@ function Header() {
           </ContainerTitle>
 
           <NumberVotes>
-            TOTAL VOTES: <DisplayVotes>{totalVotes}</DisplayVotes>
+            TOTAL VOTES: <DisplayVotes>{votes}</DisplayVotes>
           </NumberVotes>
         </Content>
       </Wrapper>

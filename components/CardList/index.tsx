@@ -2,7 +2,7 @@ import * as React from 'react'
 
 /* Components */
 import Spinner from 'components/Spinner'
-import { Card, Wrapper } from 'components'
+import { Card, CardPlaceholder, Wrapper } from 'components'
 
 /* Styles */
 import { Container, Grid } from './styles'
@@ -16,19 +16,20 @@ import { GetAllCandidates } from 'types'
 
 function CardList() {
   const { data } = useQuery<GetAllCandidates>(GET_ALL_CANDIDATES)
+  let content: React.ReactNode
 
-  if (!data) return <Spinner />
-
-  const { getAllCandidates } = data
+  if (!data) {
+    const voidArray = Array(6).fill('')
+    content = React.Children.toArray(voidArray.map(() => <CardPlaceholder />))
+  } else {
+    const { getAllCandidates } = data
+    content = getAllCandidates.map((user) => <Card key={user.id} {...user} />)
+  }
 
   return (
     <Container>
       <Wrapper>
-        <Grid>
-          {getAllCandidates.map((user) => (
-            <Card key={user.id} {...user} />
-          ))}
-        </Grid>
+        <Grid>{content}</Grid>
       </Wrapper>
     </Container>
   )
